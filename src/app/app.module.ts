@@ -1,3 +1,6 @@
+import { PaymentAddPage } from './../pages/payment/payment-add/payment-add';
+import { PaymentDetailsPage } from './../pages/payment/payment-details/payment-details';
+import { PaymentPage } from './../pages/payment/payment';
 import { GroupCreatePage } from './../pages/group/group-create/group-create';
 import { GroupPage } from './../pages/group/group';
 import { UserSignupPage } from './../pages/user/user-signup/user-signup';
@@ -23,6 +26,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     UserSignupPage,
     GroupPage,
     GroupCreatePage,
+    PaymentPage,
+    PaymentDetailsPage,
+    PaymentAddPage,
     ListPage
   ],
   imports: [
@@ -38,6 +44,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     UserSignupPage,
     GroupPage,
     GroupCreatePage,
+    PaymentPage,
+    PaymentDetailsPage,
+    PaymentAddPage,
     ListPage
   ],
   providers: [

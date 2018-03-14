@@ -8,8 +8,10 @@
 
 
 <ion-content padding>
-  <ng-container *ngFor="let g of groups">
-    <p>{{g.name}}</p>
-    <button ion-button outline (click)="addGroup()">Add Group</button>
-  </ng-container>
+  <ion-list>
+    <button ion-item *ngFor="let g of groups" (click)="onGroupSelected(g)">
+      {{g.name}}
+    </button>
+  </ion-list>
+  <button ion-button outline (click)="addGroup()">Add Group</button>
 </ion-content>
