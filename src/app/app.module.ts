@@ -1,4 +1,4 @@
-import { CalculatorPage } from './../pages/calculator/calculator';
+import { CalculatorPage } from './../pages/payment/calculator/calculator';
 import { PaymentAddPage } from './../pages/payment/payment-add/payment-add';
 import { PaymentDetailsPage } from './../pages/payment/payment-details/payment-details';
 import { PaymentPage } from './../pages/payment/payment';

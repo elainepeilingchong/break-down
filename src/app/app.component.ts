@@ -1,4 +1,5 @@
-import { CalculatorPage } from './../pages/calculator/calculator';
+import { PaymentPage } from './../pages/payment/payment';
+// import { CalculatorPage } from './../pages/payment/calculator/calculator';
 import { UserPage } from './../pages/user/user';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
@@ -14,7 +15,7 @@ import { ListPage } from '../pages/list/list';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = CalculatorPage;
+  rootPage: any = PaymentPage;
 
   pages: Array<{title: string, component: any}>;
 

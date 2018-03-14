@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -13,7 +13,7 @@ export class CalculatorPage {
   firstNum: number;
   secondNum: number;
   operant: string = "";
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public viewCtrl: ViewController,public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -28,6 +28,10 @@ export class CalculatorPage {
       this.firstNum = 0;
       this.secondNum = 0;
       this.operant = "";
+    }
+    else if(btn == 'dot'){
+      this.str = this.str + "." ;
+      this.display = this.str
     }
   }
   deleteLetter() {
@@ -79,5 +83,11 @@ export class CalculatorPage {
       }
     }
 
+  }
+  onSubmit(){
+    if(this.str.length!=0){
+      this.onCalculate();
+    }
+    this.viewCtrl.dismiss({result:this.tempResult});
   }
 }

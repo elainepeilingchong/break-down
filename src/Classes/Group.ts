@@ -1,16 +1,17 @@
+import { User } from './User';
 import { Payment } from './Payment';
 export class Group {
     private _id: number;
     private _name: string;
     private _description: string;
-    private _members: Array<string>;
+    private _members: Array<User>;
     private _createdDate: Date;
     private _payments: Array<Payment>;
 
-    constructor(id: number, name: string, description: string, members: Array<string>, createdDate: Date, payments: Array<Payment>) {
+    constructor(id: number, name: string, description: string, members: Array<User>, createdDate: Date, payments: Array<Payment>) {
         this._id = id;
         this._name = name;
-        this._description=description;
+        this._description = description;
         this._members = members;
         this._createdDate = createdDate;
         this._payments = payments;
@@ -32,20 +33,20 @@ export class Group {
         this._name = value;
     }
 
-	public get description(): string {
-		return this._description;
-	}
+    public get description(): string {
+        return this._description;
+    }
 
-	public set description(value: string) {
-		this._description = value;
-	}
-    
+    public set description(value: string) {
+        this._description = value;
+    }
 
-    public get members(): Array<string> {
+
+    public get members(): Array<User> {
         return this._members;
     }
 
-    public set members(value: Array<string>) {
+    public set members(value: Array<User>) {
         this._members = value;
     }
 

@@ -15,8 +15,9 @@
   </ion-list>
   <button ion-button outline (click)="addGroup()">Add Group</button> -->
   <ion-card *ngFor="let g of groups" (click)="onGroupSelected(g)">
-      <img src="../../assets/imgs/logo.png"/>
-      <div class="card-title">{{g.name}}</div>
-      <div class="card-subtitle">{{g.payments.length}} payments</div>
-    </ion-card>
+    <img src="../../assets/imgs/logo.png">
+    <div class="card-title">{{g.name}}</div>
+    <div class="card-subtitle">{{g.payments.length}} payments</div>
+  </ion-card>
+  <button ion-button outline (click)="addGroup()">Add Group</button>
 </ion-content>

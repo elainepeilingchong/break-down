@@ -16,15 +16,31 @@
       <ion-list>
         <ion-item>
           <ion-label stacked>Price</ion-label>
-          <ion-input [id]="'add_payment_price_input'" min="0" type="number" [(ngModel)]="payment.price"></ion-input>
+          <ion-input [id]="'add_payment_price_input'" min="0" type="number" [(ngModel)]="payment.price" (press)="presentPopover($event)"></ion-input>
         </ion-item>
-
         <ion-item>
-          <ion-label stacked>Payee</ion-label>
-          <ion-select [(ngModel)]="payment.payee.name">
-            <ion-option *ngFor="let user of group.members" [value]="user">{{user}}</ion-option>
+          <ion-label stacked>Name</ion-label>
+          <ion-input [id]="'add_payment_name_input'" type="text" [(ngModel)]="payment.title"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Note</ion-label>
+          <ion-input [id]="'add_payment_note_input'" type="text" [(ngModel)]="payment.note"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Payer</ion-label>
+          <ion-select [(ngModel)]="payers" multiple="true" (ionChange)="onPayerChange()">
+            <ion-option *ngFor="let user of group.members" [value]="user">{{user.name}}</ion-option>
           </ion-select>
         </ion-item>
+        <ion-item>
+
+          <ng-container *ngFor="let p of payment.payer">
+            <h1>{{p.user.name}}</h1>
+            <h3>{{p.pricePaid}}</h3>
+          </ng-container>
+
+        </ion-item>
+        <!-- <button ion-button (click)="check()">get Payer</button> -->
         <!-- <ion-item>
               <ion-label stacked>Group Member</ion-label>
               <ion-input [id]="'add_group_memeber_name_input'" type="text" ngModel name="groupMember" placeholder="Group Member Name"></ion-input>
