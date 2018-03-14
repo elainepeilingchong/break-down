@@ -16,63 +16,62 @@
 <ion-content padding>
   <ion-grid>
     <ion-row>
-      <h1 style="text-align:center">0</h1>
+      <h1 style="text-align:center" >{{display}}</h1>
     </ion-row>
     <ion-row>
       <ion-col col-3>
-        <button ion-button outline>C</button>
+        <button ion-button outline (click)="btnClicked('C')">C</button>
       </ion-col>
       <ion-col col-3>
-        <button ion-button outline>/</button>
+        <button ion-button outline (click)="setOperant('divide')">/</button>
       </ion-col>
       <ion-col col-3>
-        <button ion-button outline>X</button>
+        <button ion-button outline (click)="setOperant('times')">X</button>
       </ion-col>
       <ion-col col-3>
-        <button ion-button outline>
-          <-</button>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-3>
-        <button ion-button outline>7</button>
-      </ion-col>
-      <ion-col col-3>
-        <button ion-button outline>8</button>
-      </ion-col>
-      <ion-col col-3>
-        <button ion-button outline>9</button>
-      </ion-col>
-      <ion-col col-3>
-        <button ion-button outline>-</button>
+        <button ion-button outline (click)="deleteLetter()"><-</button>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col col-3>
-        <button ion-button outline>4</button>
+        <button ion-button outline (click)="getNumber(7)">7</button>
       </ion-col>
       <ion-col col-3>
-        <button ion-button outline>5</button>
+        <button ion-button outline (click)="getNumber(8)">8</button>
       </ion-col>
       <ion-col col-3>
-        <button ion-button outline>6</button>
+        <button ion-button outline (click)="getNumber(9)">9</button>
       </ion-col>
       <ion-col col-3>
-        <button ion-button outline>+</button>
+        <button ion-button outline (click)="setOperant('minus')">-</button>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col col-3>
-        <button ion-button outline>1</button>
+        <button ion-button outline (click)="getNumber(4)">4</button>
       </ion-col>
       <ion-col col-3>
-        <button ion-button outline>2</button>
+        <button ion-button outline (click)="getNumber(5)">5</button>
       </ion-col>
       <ion-col col-3>
-        <button ion-button outline>3</button>
+        <button ion-button outline (click)="getNumber(6)">6</button>
       </ion-col>
       <ion-col col-3>
-        <button ion-button outline>=</button>
+        <button ion-button outline (click)="setOperant('plus')">+</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-3>
+        <button ion-button outline (click)="getNumber(1)">1</button>
+      </ion-col>
+      <ion-col col-3>
+        <button ion-button outline (click)="getNumber(2)">2</button>
+      </ion-col>
+      <ion-col col-3>
+        <button ion-button outline (click)="getNumber(3)">3</button>
+      </ion-col>
+      <ion-col col-3>
+        <button ion-button outline (click)="getResult()">=</button>
       </ion-col>
     </ion-row>
     <ion-row>
@@ -80,13 +79,13 @@
         <button ion-button outline>%</button>
       </ion-col>
       <ion-col col-3>
-        <button ion-button outline>0</button>
+        <button ion-button outline (click)="getNumber(0)">0</button>
       </ion-col>
       <ion-col col-3>
         <button ion-button outline>.</button>
       </ion-col>
       <ion-col col-3>
-        <button ion-button outline>=</button>
+        <button ion-button outline (click)="getResult()">=</button>
       </ion-col>
     </ion-row>
   </ion-grid>

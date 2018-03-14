@@ -7,7 +7,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'calculator.html',
 })
 export class CalculatorPage {
-result;
+  str: string = "";
+  display: string = "0";
+  tempResult: number = 0;
+  firstNum: number;
+  secondNum: number;
+  operant: string = "";
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -15,13 +20,64 @@ result;
     console.log('ionViewDidLoad CalculatorPage');
   }
 
-  btnClicked(btn:string){
-    if(btn=='C'){
-      this.result="";
-    }else if(btn=="="){
-      this.result = eval(this.result);
-    }else{
-      this.result +=btn;
+  btnClicked(btn: string) {
+    if (btn == 'C') {
+      this.display = "0";
+      this.str = "";
+      this.tempResult = 0;
+      this.firstNum = 0;
+      this.secondNum = 0;
+      this.operant = "";
     }
+  }
+  deleteLetter() {
+    this.str = this.str.substr(0, this.str.length - 1);
+    if (this.str.length == 0) {
+      this.str = "0";
+    }
+    this.firstNum = eval(this.str);
+    this.display = this.str;
+  }
+  getNumber(number: number) {
+    this.str = this.str + "" + number;
+    this.firstNum = eval(this.str);
+    this.display = this.str;
+  }
+  setOperant(operant: string) {
+    this.onCalculate();
+    this.operant = operant;
+    this.str = "";
+  }
+  getResult() {
+    this.onCalculate();
+    this.str = "";
+    this.display = "" + this.tempResult
+    this.firstNum = this.tempResult;
+    this.operant = "";
+  }
+  onCalculate() {
+    switch (this.operant) {
+      case 'plus': {
+        this.tempResult = this.tempResult + this.firstNum;
+        break;
+      }
+      case 'minus': {
+        this.tempResult = this.tempResult - this.firstNum;
+        break;
+      }
+      case 'times': {
+        this.tempResult = this.tempResult * this.firstNum;
+        break;
+      }
+      case 'divide': {
+        this.tempResult = this.tempResult / this.firstNum;
+        break;
+      }
+      default: {
+        this.tempResult = this.firstNum;
+        break;
+      }
+    }
+
   }
 }
