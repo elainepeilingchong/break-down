@@ -1,0 +1,57 @@
+import { Payment } from './Payment';
+export class Group {
+    private _id: number;
+    private _name: string;
+    private _members: Array<string>;
+    private _createdDate: Date;
+    private _payments: Array<Payment>;
+
+    constructor(id: number, name: string, members: Array<string>, createdDate: Date, payments: Array<Payment>) {
+        this._id = id;
+        this._name = name;
+        this._members = members;
+        this._createdDate = createdDate;
+        this._payments = payments;
+    }
+
+    public get id(): number {
+        return this._id;
+    }
+
+    public set id(value: number) {
+        this._id = value;
+    }
+
+    public get name(): string {
+        return this._name;
+    }
+
+    public set name(value: string) {
+        this._name = value;
+    }
+
+    public get members(): Array<string> {
+        return this._members;
+    }
+
+    public set members(value: Array<string>) {
+        this._members = value;
+    }
+
+    public get createdDate(): Date {
+        return this._createdDate;
+    }
+
+    public set createdDate(value: Date) {
+        this._createdDate = value;
+    }
+
+    public get payments(): Array<Payment> {
+        return this._payments;
+    }
+
+    public set payments(value: Array<Payment>) {
+        this._payments = value;
+    }
+
+}

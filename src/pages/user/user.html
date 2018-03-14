@@ -1,0 +1,21 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>User</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-item>
+    <ion-label stacked>Username</ion-label>
+    <ion-input type="text" [(ngModel)]="username" name="title"></ion-input>
+  </ion-item>
+  <button ion-button outline (click)="signUp()" [disabled]="!isValid()">Sign Up</button>
+  <!-- or with standalone set to true -->
+  <!-- <ion-item>
+    <ion-label stacked>Todo</ion-label>
+    <ion-input type="text" [(ngModel)]="todo.title" [ngModelOptions]="{standalone: true}"></ion-input>
+  </ion-item> -->
+</ion-content>

@@ -1,0 +1,15 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>group</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ng-container *ngFor="let g of groups">
+    <p>{{g.name}}</p>
+    <button ion-button outline (click)="addGroup()">Add Group</button>
+  </ng-container>
+</ion-content>
