@@ -1,3 +1,4 @@
+import { CalculatorPage } from './../pages/calculator/calculator';
 import { PaymentAddPage } from './../pages/payment/payment-add/payment-add';
 import { PaymentDetailsPage } from './../pages/payment/payment-details/payment-details';
 import { PaymentPage } from './../pages/payment/payment';
@@ -29,6 +30,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     PaymentPage,
     PaymentDetailsPage,
     PaymentAddPage,
+    CalculatorPage,
     ListPage
   ],
   imports: [
@@ -47,6 +49,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     PaymentPage,
     PaymentDetailsPage,
     PaymentAddPage,
+    CalculatorPage,
     ListPage
   ],
   providers: [

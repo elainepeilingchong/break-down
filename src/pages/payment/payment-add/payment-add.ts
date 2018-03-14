@@ -1,12 +1,9 @@
+import { Group } from './../../../Classes/Group';
+import { Payment } from './../../../Classes/Payment';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { User } from '../../../Classes/User';
 
-/**
- * Generated class for the PaymentAddPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -14,12 +11,24 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'payment-add.html',
 })
 export class PaymentAddPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  payment: Payment = new Payment(1, 0, new User(1,"Elaine"));
+  group: Group;
+  constructor(private viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams) {
+    this.group = this.navParams.get("group");
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PaymentAddPage');
   }
+  closeModal() {
+    this.viewCtrl.dismiss();
+  }
+  onAdd(add = false) {
 
+    this.viewCtrl.dismiss({ group: this.payment });
+  }
+  isValid() {
+    return (
+      this.payment.price != null && this.payment.price != undefined && this.payment.price != 0)
+  }
 }

@@ -10,7 +10,7 @@
 <ion-content padding>
   <ion-list>
     <button ion-item *ngFor="let p of group.payments" (click)="onPaymentSelected(p)">
-      {{p.id}}
+      {{p.price}}
     </button>
   </ion-list>
   <button ion-button outline (click)="addPayment()">Add Payment</button>

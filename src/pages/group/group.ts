@@ -22,7 +22,7 @@ export class GroupPage {
     console.log('ionViewDidLoad GroupPage');
   }
   addGroup() {
-    const modal = this.modalCtrl.create(GroupCreatePage, {});
+    const modal = this.modalCtrl.create(GroupCreatePage,{});
     modal.present();
     modal.onDidDismiss(data => {
       if (data != null || data != undefined) {
