@@ -1,3 +1,4 @@
+import { PayerPayeePrice } from './PayeePrice';
 import { User } from './User';
 export class Payee {
 	private _id: number;
@@ -6,14 +7,18 @@ export class Payee {
 	private _priceOwe: number;
 	private _note: string;
 	private _quantity: number;
+	private _payerPrice:Array<PayerPayeePrice>;
+	private _remainingAmount: number;
 
-	constructor(id: number, paymentId: number, user: User, priceOwe: number, note: string, quantity: number) {
+	constructor(id: number, paymentId: number, user: User, priceOwe: number, note: string, quantity: number,payerPrice:Array<PayerPayeePrice>,remainingAmount: number) {
 		this._id = id;
 		this._paymentId = paymentId;
 		this._user = user;
 		this._priceOwe = priceOwe;
 		this._note = note;
 		this._quantity = quantity;
+		this._payerPrice=payerPrice;
+		this._remainingAmount = remainingAmount;
 	}
 
 	public get id(): number {
@@ -64,5 +69,21 @@ export class Payee {
 		this._quantity = value;
 	}
 
+
+	public get payerPrice(): Array<PayerPayeePrice> {
+		return this._payerPrice;
+	}
+
+	public set payerPrice(value: Array<PayerPayeePrice>) {
+		this._payerPrice = value;
+	}
+
+	public get remainingAmount(): number {
+		return this._remainingAmount;
+	}
+
+	public set remainingAmount(value: number) {
+		this._remainingAmount = value;
+	}
 
 }
