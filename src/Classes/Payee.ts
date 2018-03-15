@@ -1,17 +1,19 @@
 import { User } from './User';
 export class Payee {
-    private _id:number;
-    private _paymentId:number;
-    private _user:User;
-    private _priceOwe: number;
-    private _note:string;
+	private _id: number;
+	private _paymentId: number;
+	private _user: User;
+	private _priceOwe: number;
+	private _note: string;
+	private _quantity: number;
 
-	constructor(id: number, paymentId: number, user: User, priceOwe: number, note: string) {
+	constructor(id: number, paymentId: number, user: User, priceOwe: number, note: string, quantity: number) {
 		this._id = id;
 		this._paymentId = paymentId;
 		this._user = user;
 		this._priceOwe = priceOwe;
 		this._note = note;
+		this._quantity = quantity;
 	}
 
 	public get id(): number {
@@ -53,6 +55,14 @@ export class Payee {
 	public set note(value: string) {
 		this._note = value;
 	}
- 
-    
+
+	public get quantity(): number {
+		return this._quantity;
+	}
+
+	public set quantity(value: number) {
+		this._quantity = value;
+	}
+
+
 }

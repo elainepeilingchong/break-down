@@ -16,7 +16,8 @@
       <ion-list>
         <ion-item>
           <ion-label stacked>Price</ion-label>
-          <ion-input [id]="'add_payment_price_input'" min="0" type="number" [(ngModel)]="payment.price" (press)="presentPopover($event)"></ion-input>
+          <ion-input [id]="'add_payment_price_input'" min="0" type="number" [(ngModel)]="payment.price" (press)="presentPopover($event)"
+            (ionChange)="onPriceChange()"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label stacked>Name</ion-label>
@@ -33,12 +34,49 @@
           </ion-select>
         </ion-item>
         <ion-item>
+          <h3>Remainding Price:{{remaidingPayerPrice}} </h3>
+        </ion-item>
 
+        <ion-item>
+          <button ion-button full (click)="onGeneratePayerEqualPrice()" [disabled]="payment.payer==null||payment.payer==undefined||payment.payer.length==0">Generate Payer Price Equally</button>
+        </ion-item>
+        <ion-item>
+          <p class="errorMessage">{{message}}</p>
           <ng-container *ngFor="let p of payment.payer">
-            <h1>{{p.user.name}}</h1>
-            <h3>{{p.pricePaid}}</h3>
+            <ion-item>
+              <ion-label stacked>{{p.user.name}} </ion-label>
+              <ion-input type="number" min="0" [(ngModel)]="p.pricePaid" (ionChang)="onPayerPriceChange(p)"></ion-input>
+            </ion-item>
           </ng-container>
-
+        </ion-item>
+        <ion-item>
+          <h3>Remainding Price:{{remaidingPayeePrice}} </h3>
+        </ion-item>
+        <ion-item>
+          <button  ion-button full (click)="onGeneratePayeeEqualQuantityPrice()" [disabled]="payment.price==0">Generate Price Regards quantity</button>
+        </ion-item>
+        <ion-item>
+            <button  ion-button full (click)="onGeneratePayeeEqualPrice()" [disabled]="payment.price==0">Generate Price Regardless quantity</button>
+          </ion-item>
+        <ion-item>
+          <button ion-button full (click)="onGeneratePayeeEqualRemaindingPrice()" [disabled]="payment.price==0">Generate Remainding Price Regards Quantity</button>
+        </ion-item>
+        <ion-item>
+          <ng-container *ngFor="let p of payment.payee">
+            <ion-col>
+              <ion-item>
+                <ion-label stacked>{{p.user.name}} </ion-label>
+                <ion-input type="number" min="0" [(ngModel)]="p.priceOwe" (ionChang)="onPayeePriceChange(p)"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col>
+              <ion-item>
+                <ion-label stacked>Quantity</ion-label>
+                <!-- (ionChang)="onPayeeQuantityChange(p)" -->
+                <ion-input type="number" min="1" [(ngModel)]="p.quantity"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ng-container>
         </ion-item>
         <!-- <button ion-button (click)="check()">get Payer</button> -->
         <!-- <ion-item>
