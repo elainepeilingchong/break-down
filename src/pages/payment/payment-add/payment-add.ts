@@ -14,6 +14,7 @@ import { IonicPage, NavController, NavParams, ViewController, PopoverController 
   templateUrl: 'payment-add.html',
 })
 export class PaymentAddPage {
+  count: number = 0;
   payment: Payment = new Payment(1, 0, [], [], new Date(), "", "");
   group: Group;
   payers: Array<any> = [];
@@ -45,7 +46,7 @@ export class PaymentAddPage {
   onGeneratePayeeEqualPrice() {
     var equalPrice = this.payment.price / this.payment.payee.length;
     for (var i = 0; i < this.group.members.length; i++) {
-      this.payment.payee[i].priceOwe = equalPrice * this.payment.payee[i].quantity;
+      this.payment.payee[i].priceOwe = equalPrice;
     }
     this.calculateRemaindingPayeePrice();
   }
@@ -56,30 +57,33 @@ export class PaymentAddPage {
     var remaining = this.payment.price;
     var ee = 0;
     var er = 0;
-    while (ee != this.payment.payee.length - 1 && er != this.payment.payer.length - 1) {
-      this.payment.payee[ee].remainingAmount;
-      if (this.payment.payee[ee].remainingAmount == 0) {
-        this.payment.payee[ee].remainingAmount = this.payment.payee[ee].priceOwe;
-      }
-      if (this.payment.payer[er].remainingAmount == 0) {
-        this.payment.payer[er].remainingAmount = this.payment.payer[er].pricePaid;
-      }
+    for (let ee of this.payment.payee) {
+      ee.remainingAmount = ee.priceOwe;
+    }
+    for (let er of this.payment.payer) {
+      er.remainingAmount = er.pricePaid;
+    }
+    while (ee != this.payment.payee.length && er != this.payment.payer.length) {
+      console.log("while");
+      console.log(er);
+      console.log(this.payment.payer[er].remainingAmount);
       if ((this.payment.payee[ee].payerPrice.reduce(function (acc, b) { return acc + b.price }, 0)) != this.payment.payee[ee].priceOwe) {
         if (this.payment.payer[er].remainingAmount < this.payment.payee[ee].remainingAmount) {
-          this.payment.payee[ee].payerPrice.push(new PayerPayeePrice(1, this.payment.payer[er].id, this.payment.payee[ee].id, this.payment.payer[er].pricePaid));
-          this.payment.payer[er].payeePrice.push(new PayerPayeePrice(1, this.payment.payer[er].id, this.payment.payee[ee].id, this.payment.payer[er].pricePaid));
-          this.payment.payee[ee].remainingAmount = this.payment.payee[ee].remainingAmount - this.payment.payer[er].pricePaid;
+          this.payment.payee[ee].payerPrice.push(new PayerPayeePrice(1, this.payment.payer[er].id, this.payment.payee[ee].id, this.payment.payer[er].remainingAmount));
+          this.payment.payer[er].payeePrice.push(new PayerPayeePrice(1, this.payment.payer[er].id, this.payment.payee[ee].id, this.payment.payer[er].remainingAmount));
+          this.payment.payee[ee].remainingAmount = this.payment.payee[ee].remainingAmount - this.payment.payer[er].remainingAmount;
           this.payment.payer[er].remainingAmount = 0;
           er++;
         } else if (this.payment.payer[er].remainingAmount > this.payment.payee[ee].remainingAmount) {
-          this.payment.payee[ee].payerPrice.push(new PayerPayeePrice(1, this.payment.payer[er].id, this.payment.payee[ee].id, this.payment.payee[ee].priceOwe));
-          this.payment.payer[er].payeePrice.push(new PayerPayeePrice(1, this.payment.payer[er].id, this.payment.payee[ee].id, this.payment.payee[ee].priceOwe));
+          this.payment.payee[ee].payerPrice.push(new PayerPayeePrice(1, this.payment.payer[er].id, this.payment.payee[ee].id, this.payment.payee[ee].remainingAmount));
+          this.payment.payer[er].payeePrice.push(new PayerPayeePrice(1, this.payment.payer[er].id, this.payment.payee[ee].id, this.payment.payee[ee].remainingAmount));
+          this.payment.payer[er].remainingAmount = this.payment.payer[er].remainingAmount - this.payment.payee[ee].remainingAmount;
           this.payment.payee[ee].remainingAmount = 0;
-          this.payment.payer[er].remainingAmount = this.payment.payer[er].remainingAmount - this.payment.payee[ee].priceOwe;
+          
           ee++;
         } else if (this.payment.payer[er].remainingAmount == this.payment.payee[ee].remainingAmount) {
-          this.payment.payee[ee].payerPrice.push(new PayerPayeePrice(1, this.payment.payer[er].id, this.payment.payee[ee].id, this.payment.payee[ee].priceOwe));
-          this.payment.payer[er].payeePrice.push(new PayerPayeePrice(1, this.payment.payer[er].id, this.payment.payee[ee].id, this.payment.payee[ee].priceOwe));
+          this.payment.payee[ee].payerPrice.push(new PayerPayeePrice(1, this.payment.payer[er].id, this.payment.payee[ee].id, this.payment.payee[ee].remainingAmount));
+          this.payment.payer[er].payeePrice.push(new PayerPayeePrice(1, this.payment.payer[er].id, this.payment.payee[ee].id, this.payment.payee[ee].remainingAmount));
           this.payment.payee[ee].remainingAmount = 0;
           this.payment.payer[er].remainingAmount = 0;
           ee++;
@@ -87,6 +91,7 @@ export class PaymentAddPage {
         }
       }
     }
+    console.log(this.payment);
     this.viewCtrl.dismiss({ payment: this.payment });
   }
   isValid() {
@@ -158,7 +163,7 @@ export class PaymentAddPage {
   onPayerChange() {
     var equalPrice = this.payment.price / this.payers.length;
     for (var i = 0; i < this.payers.length; i++) {
-      var payer = new Payer(1, this.payment.id, this.payers[i], equalPrice, [], 0);
+      var payer = new Payer(this.count++, this.payment.id, this.payers[i], equalPrice, [], 0);
       if (this.payment.payer == null || this.payment.payer == undefined) {
         this.payment.payer = [];
       }
@@ -185,7 +190,6 @@ export class PaymentAddPage {
   //   this.calculateRemaindingPayeePrice();
   // }
   onPriceChange() {
-    console.log(this.payment.price);
     if (this.payment.price != null || this.payment.price != undefined) {
       this.calculateRemaindingPayeePrice();
       this.calculateRemaindingPayerPrice();
