@@ -17,6 +17,20 @@ import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import firebase from 'firebase';
+import { AuthService } from '../services/auth';
+
+import { HttpClientModule } from '@angular/common/http';
+import { GroupService } from '../services/group-function';
+export const config = {
+  apiKey: "AIzaSyCxRLjl4ChYgNaSzCb6s-ZIsssLkDJGjk4",
+  authDomain: "breakdown-1dfb3.firebaseapp.com",
+  databaseURL: "https://breakdown-1dfb3.firebaseio.com",
+  projectId: "breakdown-1dfb3"
+  // ,
+  // storageBucket: "breakdown-1dfb3.appspot.com",
+  // messagingSenderId: "95832041731"
+};
 
 @NgModule({
   declarations: [
@@ -36,6 +50,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -55,7 +70,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    AuthService,
+    GroupService
   ]
 })
-export class AppModule {}
+export class AppModule { }

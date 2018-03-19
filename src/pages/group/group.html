@@ -1,10 +1,11 @@
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>group</ion-title>
-  </ion-navbar>
-
-</ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Group</ion-title>
+    </ion-navbar>
+  </ion-header>
 
 
 <ion-content padding class="card-background-page">
@@ -20,4 +21,5 @@
     <div class="card-subtitle">{{g.payments.length}} payments</div>
   </ion-card>
   <button ion-button outline (click)="addGroup()">Add Group</button>
+  <button ion-button outline (click)="onStore()">STORE</button>
 </ion-content>

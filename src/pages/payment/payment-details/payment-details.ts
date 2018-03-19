@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the PaymentDetailsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Payment } from '../../../Classes/Payment';
 
 @IonicPage()
 @Component({
@@ -14,8 +8,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'payment-details.html',
 })
 export class PaymentDetailsPage {
-
+payment:Payment;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+this.payment=this.navParams.get("payment");
+console.log(this.payment);
+
   }
 
   ionViewDidLoad() {
