@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS user(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT);
+INSERT INTO user(name) VALUES ('Elaine');
+INSERT INTO user(name) VALUES ('Farwa');
+INSERT INTO user(name) VALUES ('Mindy');
